@@ -62,5 +62,53 @@ app.get("/janken", (req, res) => {
   }
   res.render( 'janken', display );
 });
+// app5.js の一番下（app.listen の直前）に、以下を「追加」する
+
+app.get("/janken-radio", (req, res) => {
+  let hand = req.query.hand;
+  let win = Number( req.query.win );
+  let total = Number( req.query.total );
+  console.log( {hand, win, total});
+  
+  const num = Math.floor( Math.random() * 3 + 1 );
+  let cpu = '';
+  let judgement = '';
+  
+  if( num==1 ) cpu = 'グー';
+  else if( num==2 ) cpu = 'チョキ';
+  else cpu = 'パー';
+
+  // ★★★ 勝敗判定を完成させる ★★★
+  if (hand == cpu) {
+    judgement = 'あいこ';
+    // total は増やさない（または、増やすルールにする）
+    // ※課題の仕様によりますが、ここでは「あいこはノーカウント」とします
+  } else if (
+    (hand == 'グー' && cpu == 'チョキ') ||
+    (hand == 'チョキ' && cpu == 'パー') ||
+    (hand == 'パー' && cpu == 'グー')
+  ) {
+    judgement = '勝ち';
+    win += 1;
+    total += 1;
+  } else {
+    judgement = '負け';
+    total += 1;
+  }
+  // ★★★ 勝敗判定ここまで ★★★
+
+  const display = {
+    your: hand,
+    cpu: cpu,
+    judgement: judgement,
+    win: win,
+    total: total
+  }
+  
+  // ★レンダリングする EJS ファイルを 'janken_radio' に変更
+  res.render( 'janken_radio', display );
+});
+
+// app.listen(8080, ...); は元からあるので、そのままでOK
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
