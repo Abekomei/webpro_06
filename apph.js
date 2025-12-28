@@ -11,12 +11,28 @@ app.use(express.urlencoded({ extended: true }));
 
 let karaokeData = [
     { id: 1, title: "怪獣の花唄", artist: "Vaundy", key: "原曲", memo: "サビが高い" },
-    { id: 2, title: "マリーゴールド", artist: "あいみょん", key: "+2", memo: "歌いやすい" }
+    { id: 2, title: "マリーゴールド", artist: "あいみょん", key: "+2", memo: "歌いやすい" },
+    { id: 3, title: "青と夏", artist: "Mrs. GREEN APPLE", key: "原曲", memo: "盛り上がる" },
+    { id: 4, title: "ドライフラワー", artist: "優里", key: "-2", memo: "裏声が重要" },
+    { id: 5, title: "Pretender", artist: "Official髭男dism", key: "-1", memo: "キーが高い" },
+    { id: 6, title: "アイドル", artist: "YOASOBI", key: "原曲", memo: "テンポ速い" },
+    { id: 7, title: "水平線", artist: "back number", key: "原曲", memo: "感情込める" },
+    { id: 8, title: "天体観測", artist: "BUMP OF CHICKEN", key: "原曲", memo: "定番" },
+    { id: 9, title: "奏", artist: "スキマスイッチ", key: "+1", memo: "バラード" },
+    { id: 10, title: "小さな恋のうた", artist: "MONGOL800", key: "原曲", memo: "皆で歌える" }
 ];
 
 let apexData = [
     { id: 1, name: "レイス", type: "スカーミッシャー", tier: "S", note: "ポータルが強い" },
-    { id: 2, name: "ジブラルタル", type: "サポート", tier: "A", note: "ドーム重要" }
+    { id: 2, name: "ジブラルタル", type: "サポート", tier: "A", note: "ドーム重要" },
+    { id: 3, name: "パスファインダー", type: "スカーミッシャー", tier: "A", note: "移動が楽しい" },
+    { id: 4, name: "ライフライン", type: "サポート", tier: "S", note: "自動蘇生が強力" },
+    { id: 5, name: "バンガロール", type: "アサルト", tier: "S", note: "スモーク活用" },
+    { id: 6, name: "ブラッドハウンド", type: "リコン", tier: "B", note: "スキャン役" },
+    { id: 7, name: "コースティック", type: "コントローラー", tier: "B", note: "室内戦最強" },
+    { id: 8, name: "ホライゾン", type: "スカーミッシャー", tier: "S", note: "リフトで高所へ" },
+    { id: 9, name: "オクタン", type: "スカーミッシャー", tier: "A", note: "ジャンパで特攻" },
+    { id: 10, name: "ワットソン", type: "コントローラー", tier: "A", note: "パイロンで防御" }
 ];
 
 let subData = [
