@@ -7,9 +7,7 @@ app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 
-// ==========================================
-//  データ置き場
-// ==========================================
+
 
 let karaokeData = [
     { id: 1, title: "怪獣の花唄", artist: "Vaundy", key: "原曲", memo: "サビが高い" },
@@ -27,9 +25,6 @@ let subData = [
 ];
 
 
-// ==========================================
-//  設定 (Config)
-// ==========================================
 
 const KARAOKE_CONFIG = {
     title: "🎤 カラオケ管理リスト",
@@ -87,11 +82,8 @@ const SUB_CONFIG = {
 };
 
 
-// ==========================================
-//  共通関数
-// ==========================================
 
-// IDを生成する関数
+
 function generateId(dataArray) {
     let maxId = 0;
     if (dataArray.length > 0) {
@@ -104,7 +96,7 @@ function generateId(dataArray) {
     return maxId + 1;
 }
 
-// 削除する関数
+
 function deleteItem(dataArray, id) {
     let index = -1;
     for(let i = 0; i < dataArray.length; i++) {
@@ -119,9 +111,7 @@ function deleteItem(dataArray, id) {
 }
 
 
-// ==========================================
-//  ルート: カラオケ (Karaoke)
-// ==========================================
+
 app.get("/karaoke", (req, res) => {
     res.render('common_list', { 
         title: KARAOKE_CONFIG.title, 
@@ -162,7 +152,7 @@ app.post("/karaoke/add", (req, res) => {
     res.redirect('/karaoke');
 });
 
-// ▼▼▼ カラオケ編集機能（追加） ▼▼▼
+
 app.get("/karaoke/edit/:id", (req, res) => {
     let target = null;
     for(let i = 0; i < karaokeData.length; i++) {
@@ -190,7 +180,7 @@ app.post("/karaoke/update/:id", (req, res) => {
     }
     res.redirect('/karaoke');
 });
-// ▲▲▲ 追加ここまで ▲▲▲
+
 
 app.get("/karaoke/delete/:id", (req, res) => {
     deleteItem(karaokeData, req.params.id); 
@@ -198,9 +188,7 @@ app.get("/karaoke/delete/:id", (req, res) => {
 });
 
 
-// ==========================================
-//  ルート: APEX
-// ==========================================
+
 app.get("/apex", (req, res) => {
     res.render('common_list', { 
         title: APEX_CONFIG.title, 
@@ -241,7 +229,7 @@ app.post("/apex/add", (req, res) => {
     res.redirect('/apex');
 });
 
-// ▼▼▼ APEX編集機能（追加） ▼▼▼
+
 app.get("/apex/edit/:id", (req, res) => {
     let target = null;
     for(let i = 0; i < apexData.length; i++) {
@@ -277,9 +265,6 @@ app.get("/apex/delete/:id", (req, res) => {
 });
 
 
-// ==========================================
-//  ルート: サブスク
-// ==========================================
 app.get("/sub", (req, res) => {
     let total = 0;
     for (let i = 0; i < subData.length; i++) {
@@ -331,7 +316,7 @@ app.post("/sub/add", (req, res) => {
     res.redirect('/sub');
 });
 
-// ▼▼▼ サブスク編集機能（追加） ▼▼▼
+
 app.get("/sub/edit/:id", (req, res) => {
     let target = null;
     for(let i = 0; i < subData.length; i++) {
@@ -360,16 +345,14 @@ app.post("/sub/update/:id", (req, res) => {
     }
     res.redirect('/sub');
 });
-// ▲▲▲ 追加ここまで ▲▲▲
+
 
 app.get("/sub/delete/:id", (req, res) => {
     deleteItem(subData, req.params.id); 
     res.redirect('/sub'); 
 });
 
-// ==========================================
-//  トップページ (メニュー)
-// ==========================================
+
 app.get("/", (req, res) => {
     res.render('top', { title: '統合データ管理システム' });
 });
