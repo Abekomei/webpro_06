@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+</head>
+<body>
+    <h2><%= title %></h2>
+    <a href="<%= baseUrl %>/create">＋ 新規追加</a>
+    <hr>
+    <table border="1">
+        <thead>
+            <tr>
+                <% for (let col of columns) { %>
+                    <th><%= col.label %></th>
+                <% } %>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let row of data) { %>
+            <tr>
+                <% for (let col of columns) { %>
+                    <td><%= row[col.key] %></td>
+                <% } %>
+                <td>
+                    <a href="<%= baseUrl %>/detail/<%= row.id %>">詳細</a> | 
+                    <a href="<%= baseUrl %>/edit/<%= row.id %>">編集</a> | 
+                    <a href="<%= baseUrl %>/delete/<%= row.id %>">削除</a>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>新規キャラ登録</title>
+</head>
+<body>
+    <h2>新しいレジェンドを登録</h2>
+    <form action="/apex/add" method="POST">
+        <label>キャラ名:</label><br>
+        <input type="text" name="name" required><br>
+        
+        <label>Tier (S/A/B/C...):</label><br>
+        <input type="text" name="tier" required><br>
+        
+        <label>ロール (スカーミッシャー等):</label><br>
+        <input type="text" name="role"><br>
+        
+        <label>コメント (強さの理由など):</label><br>
+        <input type="text" name="comment"><br>
+        
+        <br>
+        <input type="submit" value="リストに追加">
+    </form>
+    <a href="/apex">一覧に戻る</a>
+</body>
+</html>

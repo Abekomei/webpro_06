@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>キャラを追加</title>
+</head>
+<body>
+    <h2>APEXキャラ評価 追加</h2>
+    <form action="/apex/add" method="POST">
+        <label>キャラ名:</label><br>
+        <input type="text" name="name" required><br>
+        
+        <label>クラス:</label><br>
+        <select name="type">
+            <option value="アサルト">アサルト</option>
+            <option value="スカーミッシャー">スカーミッシャー</option>
+            <option value="リコン">リコン</option>
+            <option value="サポート">サポート</option>
+            <option value="コントローラー">コントローラー</option>
+        </select><br>
+        
+        <label>現在のTier:</label><br>
+        <select name="tier">
+            <option value="S">S (最強)</option>
+            <option value="A">A (強い)</option>
+            <option value="B">B (普通)</option>
+            <option value="C">C (微妙)</option>
+        </select><br>
+        
+        <label>評価メモ:</label><br>
+        <textarea name="note" placeholder="強い点、弱い点など"></textarea><br>
+        
+        <br>
+        <input type="submit" value="Tier表に追加">
+    </form>
+    <a href="/apex">キャンセル</a>
+</body>
+</html>

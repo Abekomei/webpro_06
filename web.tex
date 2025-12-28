@@ -1,0 +1,372 @@
+\documentclass[uplatex,dvipdfmx]{jsarticle}
+
+% 画像、URL、コード表示、表作成に必要なパッケージ
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{geometry}
+
+% 余白の調整（表や画像がはみ出ないように）
+\geometry{left=25mm, right=25mm, top=30mm, bottom=30mm}
+
+% コード表示の設定
+\lstset{
+  basicstyle={\ttfamily},
+  identifierstyle={\small},
+  commentstyle={\small\itshape},
+  keywordstyle={\small\bfseries},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},
+  numbers=left,
+  xrightmargin=0zw,
+  xleftmargin=3zw,
+  numberstyle={\scriptsize},
+  stepnumber=1,
+  numbersep=1zw,
+  lineskip=-0.5ex,
+  keepspaces=true
+}
+
+% タイトル情報
+\title{Web アプリケーション仕様書}
+\author{千葉工業大学 情報工学科 1年\\学籍番号 25G1006\\氏名 安部 孔明}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+% ==================================================
+% 第1章：ソースコードの管理場所（先生の指示により先頭へ配置）
+% ==================================================
+\section{ソースコードの管理場所}
+本課題にて開発したアプリケーションのソースコードは，以下のGitHubリポジトリにて公開・管理している．
+
+\url{https://github.com/Abekomei/webpro_06}
+
+% ==================================================
+% 第2章：はじめに
+% ==================================================
+\section{はじめに}
+本レポートは，Webプログラミングの最終課題として開発した「統合データ管理システム」の仕様書である．
+
+本システムは，日常生活における異なる属性のデータ（ゲームのキャラ評価，カラオケの楽曲，サブスクリプション契約）を，統一されたWebインターフェース上で一元管理することを目的としている．
+
+本ドキュメントは，以下の3部構成で記述する．
+\begin{enumerate}
+    \item 利用者向けマニュアル
+    \item 管理者向けマニュアル
+    \item 開発者向け仕様書
+\end{enumerate}
+
+\newpage
+
+% ==================================================
+% 第3章：利用者向けマニュアル
+% ==================================================
+\section{利用者向けマニュアル}
+
+\subsection{システム概要とトップページ}
+本システムは，トップページ（メニュー画面）から各アプリケーションへアクセスし，データの閲覧・追加・削除を行うことができる．
+
+\subsubsection{アクセス方法}
+Webブラウザ（Google Chrome等）より以下のURLにアクセスする．
+\begin{center}
+\url{http://localhost:8081/}
+\end{center}
+
+アクセスすると以下のメニュー画面が表示され，目的の管理アプリを選択できる．
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{top.png}
+  \caption{トップページ（メニュー画面）}
+\end{figure}
+
+\subsection{各機能の操作}
+ここでは「Apex Legends キャラ管理」を例に操作方法を説明する（他アプリも操作は共通である）．
+
+\subsubsection{一覧画面}
+各アプリのメイン画面では，登録データが表形式で表示される．
+\begin{itemize}
+    \item \textbf{詳細}: データの全項目を確認できる詳細画面へ移動する．
+    \item \textbf{編集}: 登録済みのデータを修正する画面へ移動する．
+    \item \textbf{削除}: データをリストから削除する（確認画面なしで即時実行される）．
+    \item \textbf{＋新規追加}: 新しいデータを登録するフォームへ移動する．
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{apex_list.png}
+  \caption{一覧画面の例（Apex Legends）}
+\end{figure}
+
+\subsubsection{詳細画面}
+一覧画面で「詳細」をクリックすると，そのデータに関するすべての情報（メモなど）が表示される．
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=10cm]{apex_detail.png}
+  \caption{詳細画面の例（Apex Legends）}
+\end{figure}
+
+\newpage
+
+% ==================================================
+% 第4章：管理者向けマニュアル
+% ==================================================
+\section{管理者向けマニュアル}
+
+\subsection{システム要件}
+\begin{itemize}
+    \item \textbf{OS}: Windows，macOS，Linux
+    \item \textbf{実行環境}: Node.js (v14.x以上推奨)
+    \item \textbf{依存ライブラリ}: Express，EJS
+\end{itemize}
+
+\subsection{起動手順}
+ターミナルでプロジェクトディレクトリに移動し，以下のコマンドを実行する．
+
+\begin{lstlisting}[language=bash, caption=サーバー起動コマンド]
+$ node apph.js
+\end{lstlisting}
+
+\texttt{Server started on port 8081!} と表示されれば起動完了である．
+
+\subsection{データの仕様（注意点）}
+本システムは学習用プロトタイプのため，データベースを使用せずメモリ上（変数）でデータを管理している．\textbf{サーバーを再起動すると，追加・削除されたデータは初期状態に戻る}仕様となっている．
+
+\newpage
+
+% ==================================================
+% 第5章：開発者向け仕様書（詳細仕様）
+% ==================================================
+\section{開発者向け仕様書}
+本章では，システムの内部構造，API仕様，および画面遷移について記述する．
+
+\subsection{共通仕様}
+全システム共通で，以下の技術スタックを採用している．
+\begin{itemize}
+    \item フレームワーク: Express
+    \item テンプレートエンジン: EJS
+    \item データ管理: 配列変数（インメモリ）
+\end{itemize}
+
+\subsection{ディレクトリ構成}
+\begin{verbatim}
+webpro_06/
+  ├── apph.js            (コントローラ兼モデル)
+  ├── views/
+  │    ├── top.ejs           (トップページ)
+  │    ├── common_list.ejs   (共通一覧テンプレート)
+  │    └── common_detail.ejs (共通詳細テンプレート)
+  ├── public/            (静的ファイル：フォーム)
+  │    ├── apex_new.html
+  │    ├── karaoke_new.html
+  │    └── subscription_new.html
+  └── package.json
+\end{verbatim}
+
+\newpage
+
+\subsection{機能別 APIおよび画面遷移仕様}
+
+各アプリケーションは共通の画面遷移ロジックに基づいて設計されている．詳細な遷移フローを以下の図に示す．
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=14cm]{a.png}
+  \caption{システム共通の画面遷移図}
+\end{figure}
+
+以下の表に，各アプリケーションのデータ構造およびAPI仕様を示す．
+
+% --- トップページ ---
+\subsubsection{トップページ (メニュー)}
+システム全体の入り口となるランディングページである．
+
+\begin{table}[H]
+\caption{トップページ API仕様}
+\begin{center}
+\begin{tabular}{|l|l|l|l|} \hline
+\textbf{機能} & \textbf{メソッド} & \textbf{パス} & \textbf{処理内容} \\ \hline
+メニュー表示 & GET & / & top.ejs をレンダリングし，リンクを表示 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+% --- APEX ---
+\subsubsection{Apex Legends キャラ管理}
+ゲームキャラクターのTier（強さランク）を管理する機能．
+
+\textbf{データ構造（変数名: apexData）}
+\begin{table}[H]
+\caption{Apex データ構造}
+\begin{center}
+\begin{tabular}{|l|l|l|} \hline
+\textbf{プロパティ名} & \textbf{型} & \textbf{説明} \\ \hline
+id & Number & データ識別用ID \\ \hline
+name & String & キャラクター名 \\ \hline
+tier & String & 強さのランク（S, Aなど） \\ \hline
+memo & String & 詳細メモ \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\textbf{API仕様}
+\begin{table}[H]
+\caption{Apex API仕様}
+\begin{center}
+\begin{tabular}{|l|l|l|l|} \hline
+\textbf{機能} & \textbf{メソッド} & \textbf{パス} & \textbf{処理内容} \\ \hline
+一覧表示 & GET & /apex & データを一覧表示 (common\_list.ejs) \\ \hline
+詳細表示 & GET & /apex/detail/:id & 指定IDの詳細を表示 (common\_detail.ejs) \\ \hline
+新規登録画面 & GET & /apex/create & 入力フォーム (apex\_new.html) へリダイレクト \\ \hline
+データ追加 & POST & /apex/add & フォーム値を受け取り配列に追加し一覧へ遷移 \\ \hline
+編集画面 & GET & /apex/edit/:id & 編集フォームを表示 \\ \hline
+データ更新 & POST & /apex/update/:id & データを更新し一覧へ遷移 \\ \hline
+データ削除 & GET & /apex/delete/:id & 指定IDを配列から削除し一覧へ遷移 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+% --- カラオケ ---
+\subsubsection{カラオケ楽曲管理}
+練習したい曲やキー設定を管理する機能．
+
+\begin{figure}[H]
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=7.5cm]{karaoke_list.png}
+    \caption{カラオケ 一覧}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=7.5cm]{karaoke_detail.png}
+    \caption{カラオケ 詳細}
+  \end{minipage}
+\end{figure}
+
+\textbf{データ構造（変数名: karaokeData）}
+\begin{table}[H]
+\caption{カラオケ データ構造}
+\begin{center}
+\begin{tabular}{|l|l|l|} \hline
+\textbf{プロパティ名} & \textbf{型} & \textbf{説明} \\ \hline
+id & Number & データ識別用ID \\ \hline
+song & String & 曲名 \\ \hline
+artist & String & アーティスト名 \\ \hline
+key & String & キー設定（原曲, +2など） \\ \hline
+memo & String & メモ（サビが高いなど） \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\textbf{API仕様}
+\begin{table}[H]
+\caption{カラオケ API仕様}
+\begin{center}
+\begin{tabular}{|l|l|l|l|} \hline
+\textbf{機能} & \textbf{メソッド} & \textbf{パス} & \textbf{処理内容} \\ \hline
+一覧表示 & GET & /karaoke & データを一覧表示 (common\_list.ejs) \\ \hline
+詳細表示 & GET & /karaoke/detail/:id & 指定IDの詳細を表示 (common\_detail.ejs) \\ \hline
+新規登録画面 & GET & /karaoke/create & 入力フォーム (karaoke\_new.html) へリダイレクト \\ \hline
+データ追加 & POST & /karaoke/add & フォーム値を受け取り配列に追加し一覧へ遷移 \\ \hline
+編集画面 & GET & /karaoke/edit/:id & 編集フォームを表示 \\ \hline
+データ更新 & POST & /karaoke/update/:id & データを更新し一覧へ遷移 \\ \hline
+データ削除 & GET & /karaoke/delete/:id & 指定IDを配列から削除し一覧へ遷移 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+% --- サブスク ---
+\subsubsection{サブスクリプション管理}
+契約中のサービスと月額料金を管理する機能．一覧表示時に合計金額を計算するロジックを含む．
+
+\begin{figure}[H]
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=7.5cm]{sub_list.png}
+    \caption{サブスク 一覧}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=7.5cm]{sub_detail.png}
+    \caption{サブスク 詳細}
+  \end{minipage}
+\end{figure}
+
+\textbf{データ構造（変数名: subData）}
+\begin{table}[H]
+\caption{サブスク データ構造}
+\begin{center}
+\begin{tabular}{|l|l|l|} \hline
+\textbf{プロパティ名} & \textbf{型} & \textbf{説明} \\ \hline
+id & Number & データ識別用ID \\ \hline
+service & String & サービス名 \\ \hline
+price & Number & 月額料金（円） \\ \hline
+renewal & String & 更新日 \\ \hline
+memo & String & メモ \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\textbf{API仕様}
+\begin{table}[H]
+\caption{サブスク API仕様}
+\begin{center}
+\begin{tabular}{|l|l|l|l|} \hline
+\textbf{機能} & \textbf{メソッド} & \textbf{パス} & \textbf{処理内容} \\ \hline
+一覧表示 & GET & /sub & 合計金額を計算し一覧表示 (common\_list.ejs) \\ \hline
+詳細表示 & GET & /sub/detail/:id & 指定IDの詳細を表示 (common\_detail.ejs) \\ \hline
+新規登録画面 & GET & /sub/create & 入力フォーム (subscription\_new.html) へリダイレクト \\ \hline
+データ追加 & POST & /sub/add & フォーム値を受け取り配列に追加し一覧へ遷移 \\ \hline
+編集画面 & GET & /sub/edit/:id & 編集フォームを表示 \\ \hline
+データ更新 & POST & /sub/update/:id & データを更新し一覧へ遷移 \\ \hline
+データ削除 & GET & /sub/delete/:id & 指定IDを配列から削除し一覧へ遷移 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\newpage
+
+\subsection{実装の工夫点（テンプレートの共通化）}
+本システムでは，開発効率と保守性を高めるため，3つの異なるアプリに対し\textbf{共通のEJSテンプレート}を使用している．
+
+\subsubsection{Configオブジェクトによる制御}
+\texttt{apph.js} 側で，各アプリの表示項目（カラム名）をオブジェクトとして定義している．
+
+\begin{lstlisting}[language=Java, caption={設定オブジェクトの例（Apex用）}]
+const APEX_CONFIG = {
+    title: "APEX キャラTier表",
+    baseUrl: "/apex",
+    listColumns: [
+        { label: "ID", key: "id" },
+        { label: "キャラ名", key: "name" },
+        { label: "Tier", key: "tier" }
+    ],
+    // ...
+};
+\end{lstlisting}
+
+\subsubsection{共通テンプレートの利用}
+定義したConfigをテンプレートに渡すことで，単一のファイルで多様なデータを表示可能とした．
+
+\begin{lstlisting}[language=html, caption={common\_list.ejs（抜粋）}]
+<% for (let col of columns) { %>
+    <th><%= col.label %></th>
+<% } %>
+\end{lstlisting}
+
+これにより，新しいアプリを追加する際もHTMLを作成する必要がなく，設定の追加のみで実装が可能となっている．
+
+\end{document}

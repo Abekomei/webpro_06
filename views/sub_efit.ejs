@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>編集 - サブスク</title></head>
+<body>
+<h1>サブスク契約 編集</h1>
+<form action="/sub/update/<%= item.id %>" method="post">
+    サービス名: <input type="text" name="service" value="<%= item.service %>"><br>
+    月額(円): <input type="number" name="price" value="<%= item.price %>"><br>
+    更新日: <input type="text" name="cycle" value="<%= item.cycle %>"><br>
+    カテゴリ: <input type="text" name="category" value="<%= item.category %>"><br>
+    詳細メモ: <input type="text" name="memo" value="<%= item.memo %>"><br>
+    <button type="submit">更新</button>
+</form>
+<a href="/sub">戻る</a>
+</body>
+</html>

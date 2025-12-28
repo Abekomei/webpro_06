@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>曲を追加</title>
+</head>
+<body>
+    <h2>新しい曲をリストに追加</h2>
+    <form action="/karaoke/add" method="POST">
+        <label>曲名:</label><br>
+        <input type="text" name="title" required><br>
+        
+        <label>アーティスト:</label><br>
+        <input type="text" name="artist" required><br>
+        
+        <label>キー設定:</label><br>
+        <input type="text" name="key" placeholder="原曲 / +2 など"><br>
+        
+        <label>メモ:</label><br>
+        <textarea name="memo"></textarea><br>
+        
+        <br>
+        <input type="submit" value="リストに追加">
+    </form>
+    <a href="/karaoke">キャンセル</a>
+</body>
+</html>

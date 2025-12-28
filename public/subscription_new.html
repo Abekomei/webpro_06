@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>サブスク追加</title>
+</head>
+<body>
+    <h2>サブスクリプション登録</h2>
+    <form action="/sub/add" method="POST">
+        <label>サービス名:</label><br>
+        <input type="text" name="service" required placeholder="例: Netflix"><br>
+        
+        <label>月額料金 (円):</label><br>
+        <input type="number" name="price" required placeholder="例: 1980"><br>
+        
+        <label>更新日・サイクル:</label><br>
+        <input type="text" name="cycle" placeholder="例: 毎月20日"><br>
+        
+        <label>カテゴリ:</label><br>
+        <select name="category">
+            <option value="動画">動画配信</option>
+            <option value="音楽">音楽</option>
+            <option value="ツール">仕事・ツール</option>
+            <option value="生活">生活・インフラ</option>
+            <option value="その他">その他</option>
+        </select><br>
+        
+        <label>メモ (プラン内容など):</label><br>
+        <textarea name="memo"></textarea><br>
+        
+        <br>
+        <input type="submit" value="リストに追加">
+    </form>
+    <a href="/sub">キャンセル</a>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+</head>
+<body>
+    <h2>詳細データ</h2>
+    <ul>
+        <% for (let col of columns) { %>
+            <li>
+                <b><%= col.label %>:</b> 
+                <%= data[col.key] %>
+            </li>
+        <% } %>
+    </ul>
+    <a href="<%= baseUrl %>">一覧に戻る</a>
+</body>
+</html>

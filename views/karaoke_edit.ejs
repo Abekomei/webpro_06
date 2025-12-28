@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>編集 - カラオケ</title></head>
+<body>
+<h1>カラオケ楽曲 編集</h1>
+<form action="/karaoke/update/<%= item.id %>" method="post">
+    曲名: <input type="text" name="title" value="<%= item.title %>"><br>
+    アーティスト: <input type="text" name="artist" value="<%= item.artist %>"><br>
+    キー: <input type="text" name="key" value="<%= item.key %>"><br>
+    メモ: <input type="text" name="memo" value="<%= item.memo %>"><br>
+    <button type="submit">更新</button>
+</form>
+<a href="/karaoke">戻る</a>
+</body>
+</html>

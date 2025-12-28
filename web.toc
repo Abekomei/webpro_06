@@ -1,0 +1,23 @@
+\contentsline {section}{\numberline {1}ソースコードの管理場所}{2}{}%
+\contentsline {section}{\numberline {2}はじめに}{2}{}%
+\contentsline {section}{\numberline {3}利用者向けマニュアル}{3}{}%
+\contentsline {subsection}{\numberline {3.1}システム概要とトップページ}{3}{}%
+\contentsline {subsubsection}{\numberline {3.1.1}アクセス方法}{3}{}%
+\contentsline {subsection}{\numberline {3.2}各機能の操作}{3}{}%
+\contentsline {subsubsection}{\numberline {3.2.1}一覧画面}{3}{}%
+\contentsline {subsubsection}{\numberline {3.2.2}詳細画面}{4}{}%
+\contentsline {section}{\numberline {4}管理者向けマニュアル}{5}{}%
+\contentsline {subsection}{\numberline {4.1}システム要件}{5}{}%
+\contentsline {subsection}{\numberline {4.2}起動手順}{5}{}%
+\contentsline {subsection}{\numberline {4.3}データの仕様（注意点）}{5}{}%
+\contentsline {section}{\numberline {5}開発者向け仕様書}{6}{}%
+\contentsline {subsection}{\numberline {5.1}共通仕様}{6}{}%
+\contentsline {subsection}{\numberline {5.2}ディレクトリ構成}{6}{}%
+\contentsline {subsection}{\numberline {5.3}機能別 APIおよび画面遷移仕様}{7}{}%
+\contentsline {subsubsection}{\numberline {5.3.1}トップページ (メニュー)}{7}{}%
+\contentsline {subsubsection}{\numberline {5.3.2}Apex Legends キャラ管理}{7}{}%
+\contentsline {subsubsection}{\numberline {5.3.3}カラオケ楽曲管理}{8}{}%
+\contentsline {subsubsection}{\numberline {5.3.4}サブスクリプション管理}{9}{}%
+\contentsline {subsection}{\numberline {5.4}実装の工夫点（テンプレートの共通化）}{11}{}%
+\contentsline {subsubsection}{\numberline {5.4.1}Configオブジェクトによる制御}{11}{}%
+\contentsline {subsubsection}{\numberline {5.4.2}共通テンプレートの利用}{11}{}%

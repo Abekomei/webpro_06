@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>編集 - APEX</title></head>
+<body>
+<h1>APEXキャラ 編集</h1>
+<form action="/apex/update/<%= item.id %>" method="post">
+    キャラ名: <input type="text" name="name" value="<%= item.name %>"><br>
+    クラス: <input type="text" name="type" value="<%= item.type %>"><br>
+    Tier: <input type="text" name="tier" value="<%= item.tier %>"><br>
+    評価メモ: <input type="text" name="note" value="<%= item.note %>"><br>
+    <button type="submit">更新</button>
+</form>
+<a href="/apex">戻る</a>
+</body>
+</html>
